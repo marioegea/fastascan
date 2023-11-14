@@ -1,0 +1,16 @@
+#!/bin/bash
+
+current_folder=$1
+N_numberoflines=$2
+
+if [[ -z $current_folder ]]; then $current_folder=. ; fi
+if [[ -z $N_numberoflines ]]; then $N_numberoflines=0 ; fi
+
+echo "FASTASCAN Results"
+
+echo "There are a total of $(find $current_folder -type f -name "*.fasta" -or -name "*.fa" | wc -l) .fasta and .fa files in the scanned folder."
+
+
+$ awk '$1~/>/{print $1}' $(find $current_folder -type f -name "*.fasta" -or -name "*.fa") | sort | uniq | wc -l
+ # → i’ll create some fasta files and check.
+ #CURRENT VERSION: NOV 14
